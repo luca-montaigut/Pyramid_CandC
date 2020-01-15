@@ -6,7 +6,7 @@
 #       | |  | |_| | | | (_| | | | | | | | (_| |      _Ll/l_L_          _TL|_T/_L_|__T__|_l_                #
 #       \_|   \__, |_|  \__,_|_| |_| |_|_|\__,_|    _TLl/T_l|_L_      _LL|_Tl/_|__l___L__L_|L_              #
 #              __/ |   CONSTRUCTOR & CLIMBER      _LT_L/L_|_L_l_L_  _'|_|_|T/_L_l__T _ l__|__|L_            #
-#              |___/                            _Tl_L|/_|__|_|__T _LlT_|_Ll/_l_ _|__[ ]__|__|_l_L_          #
+#             |___/                             _Tl_L|/_|__|_|__T _LlT_|_Ll/_l_ _|__[ ]__|__|_l_L_          #
 #                                     __ jjs_ _LT_l_l/|__|__l_T _T_L|_|_|l/___|__ | _l__|_ |__|_T_L_  __    #
 #                                                                                                           #
 #############################################################################################################
@@ -125,8 +125,19 @@ end
 # LANCER DU DE
 def roll_dice()
   print "Lancer le dé avec la touche \"Entrer\" :"
-  gets.chomp
-  random = (rand(6).succ)
+  egg = gets.chomp
+  if egg != ""
+    puts "\n\n|-----------------------------------------------------------------------|"
+    puts "| \"...zZzzz..zZzz...zZz... Quoi ?! PAS MOYEN DE PIONCER TRANQUILLE ICI !|"
+    puts "|  Bon puisque tu es là je vais te filer une astuce :                   |"
+    puts "|  Laisse la touche \"Entrer\" enfoncée pour monter vite, vas-y essaye ! \"|"
+    puts "|-----------------------------------------------------------------------|"
+    puts "                                                |_______________________________   _/)/)"
+    puts "                                                                                  (-.- )"
+    puts "                                                                                (\")(\")_o"
+    puts "\n\n"
+  else
+      random = (rand(6).succ)
   case random
   when 1       
     puts "   *********"
@@ -172,6 +183,7 @@ def roll_dice()
     print "6 : "
   end
   return random
+  end
 end   
 
 # DEPLACEMENT
@@ -221,7 +233,7 @@ def perform
     try += 1
   end  
   puts "\n\n###################################################################################################################\n\n"
-  puts "         Bravo ! Te voilà en tout en haut ! \n         Il t'a fallu #{try} étapes pour atteindre le sommet mais quelle vue magnifique !\n         Ça vallait le coup ! =)"
+  puts "         BRAVO ! Te voilà en tout en haut ! \n         Il t'a fallu #{try} étapes pour atteindre le sommet mais quelle vue magnifique !\n         Ça vallait le coup ! =)"
   puts "\n###################################################################################################################\n\n"
 end
 
