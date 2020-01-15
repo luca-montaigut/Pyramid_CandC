@@ -201,6 +201,47 @@ def move (roll)
   end
 end
 
+# PARI
+def bet_select
+  bet = gets.chomp.to_i
+  if bet == 1 || 2 || 3
+    case bet
+    when 1 
+      puts "Tu es bien pessimiste, mais ok ton pari est enregistré\n\n"
+      return bet
+    when 2
+      puts "C'est un pari optimiste, j'aime ça ! Je l'enregistre, bonne ascension ;)\n\n"
+      return bet
+    when 3
+      puts "Le plus risqué ! Espérons que ça paye ! Pour voir ça, rdv au sommet ;)"
+      return bet
+    end
+  else
+    puts "Mauvaise commande ! On recommence, un peu de concentration stp !\n\n"      
+  end
+end
+
+# RESULTAT DU PARI
+def gamble(bet, try, average)
+  bet = bet
+  try = try
+  average = average/100
+  case bet
+  when 1
+    if try > average
+      return true
+    end
+  when 2
+    if try < average
+      return true
+    end
+  when 3
+    if try == average
+      return true
+    end
+  end
+end
+
 # PROGRAMME
 def perform
   puts "\n\n###################################################################################################################\n\n"
@@ -223,6 +264,11 @@ def perform
   puts "  Les règles sont simples : tu vas lancer un dé :\n> Si tu fais 5 ou 6 : tu montes d'une marche\n> Si tu fais 2, 3 ou 4 : tu restes sur place\n> Si tu fais 1 : tu redescends d'une marche"
   average = average_finish_times(etage)
   puts "\n  En moyenne sur 100 parties avec une pyramide de cette taille, tu atteindras le sommet en : #{average/100} étapes\n\n"
+  bet = 0
+  while bet == 0
+    puts "  Tu crois que tu vas faire plus ou moins ? : \n1. Plus \n2. Moins \n3. Pile pareil ! \n(Choisir en tapant le chiffre correspondant)"
+    bet = bet_select
+  end  
   user = 0
   try = 0
   while user != etage
@@ -231,9 +277,18 @@ def perform
     user = user + step
     print ">  Tu es à l'étage n°#{user} sur #{etage}. "
     try += 1
-  end  
+  end
+  
+  bet_result = gamble(bet, try, average)  
+  puts "#{bet_result}"
+
   puts "\n\n###################################################################################################################\n\n"
-  puts "         BRAVO ! Te voilà en tout en haut ! \n         Il t'a fallu #{try} étapes pour atteindre le sommet mais quelle vue magnifique !\n         Ça vallait le coup ! =)"
+  puts "         BRAVO ! Te voilà en tout en haut ! \n"
+  if bet_result 
+    puts "         Il t'a fallu seulement #{try} étapes pour atteindre le sommet, tu as gagné ton pari. Félicitations !!! \n         Quelle vue magnifique ! Ça vallait le coup ! =)"
+  else
+    puts "         Il t'a fallu #{try} étapes pour atteindre le sommet, tu n'as gagné ton pari :'( #tristesse\n         Heuresement que la vue est magnifique pour te consoler ! Ça vallait le coup ! =)"
+  end
   puts "\n###################################################################################################################\n\n"
 end
 
